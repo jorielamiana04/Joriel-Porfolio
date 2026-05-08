@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Joriel C. Amiana — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0d12;
+  --bg2:#0f1117;
+  --bg3:#151821;
+  --bg4:#1c2030;
+  --gold:#c9a84c;
+  --gold2:#e8c97a;
+  --gold3:rgba(201,168,76,0.12);
+  --gold4:rgba(201,168,76,0.25);
+  --text:#f0ece3;
+  --muted:#7a7670;
+  --muted2:#a09c94;
+  --border:rgba(201,168,76,0.15);
+  --border2:rgba(201,168,76,0.3);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 7%;height:64px;
+  background:rgba(11,13,18,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  transition:background 0.3s;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;
+  color:var(--gold2);letter-spacing:-0.5px;
+}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{
+  font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted2);text-decoration:none;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold2)}
+.nav-cta{
+  font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  padding:8px 20px;
+  background:transparent;border:1px solid var(--gold);
+  color:var(--gold);border-radius:2px;cursor:pointer;
+  text-decoration:none;
+  transition:background 0.2s,color 0.2s;
+}
+.nav-cta:hover{background:var(--gold);color:var(--bg)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--gold);transition:0.3s}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;padding:0 7%;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,168,76,0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,168,76,0.03) 0%, transparent 70%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+.hero-content{position:relative;z-index:1;max-width:780px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:28px;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold)}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,8vw,96px);
+  font-weight:300;line-height:0.95;
+  color:#fff;margin-bottom:24px;letter-spacing:-2px;
+}
+.hero-name em{
+  font-style:italic;color:var(--gold2);
+  display:block;font-weight:700;
+}
+.hero-desc{
+  font-size:15px;font-weight:300;color:var(--muted2);
+  line-height:1.8;max-width:520px;margin-bottom:48px;
+}
+.hero-desc strong{color:var(--text);font-weight:500}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  padding:14px 32px;background:var(--gold);color:var(--bg);
+  border:none;border-radius:2px;cursor:pointer;text-decoration:none;
+  transition:background 0.2s,transform 0.15s;display:inline-block;
+}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-outline{
+  font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  padding:14px 32px;background:transparent;color:var(--gold);
+  border:1px solid var(--gold);border-radius:2px;cursor:pointer;text-decoration:none;
+  transition:background 0.2s,transform 0.15s;display:inline-block;
+}
+.btn-outline:hover{background:var(--gold3);transform:translateY(-1px)}
+.hero-stats{
+  position:absolute;right:7%;bottom:10%;
+  display:flex;flex-direction:column;gap:28px;
+}
+.stat-item{text-align:right}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:600;color:var(--gold);line-height:1;
+}
+.stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* ── SECTION SHELL ── */
+section{padding:100px 7%}
+.section-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+}
+.section-tag::after{content:'';width:40px;height:1px;background:var(--gold)}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,56px);
+  font-weight:300;color:#fff;line-height:1.1;
+  letter-spacing:-1px;margin-bottom:16px;
+}
+.section-sub{
+  font-size:14px;font-weight:300;color:var(--muted2);
+  line-height:1.75;max-width:500px;
+}
+
+/* ── ABOUT ── */
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
+.about-text p{
+  font-size:14px;font-weight:300;color:var(--muted2);
+  line-height:1.85;margin-bottom:20px;
+}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-text blockquote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:400;font-style:italic;
+  color:var(--text);border-left:2px solid var(--gold);
+  padding-left:20px;margin:32px 0;line-height:1.6;
+}
+.about-right{display:flex;flex-direction:column;gap:20px}
+.about-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;padding:24px 28px;
+  display:flex;gap:18px;align-items:flex-start;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.about-card:hover{border-color:var(--border2);transform:translateX(4px)}
+.about-card-icon{
+  width:40px;height:40px;flex-shrink:0;
+  background:var(--gold3);border:1px solid var(--border);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:18px;
+}
+.about-card-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.about-card-text{font-size:12px;font-weight:300;color:var(--muted2);line-height:1.6}
+
+/* ── SERVICES ── */
+#services{background:var(--bg)}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;margin-top:60px;
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+}
+.service-card{
+  background:var(--bg2);padding:40px 36px;
+  border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+  transition:background 0.25s;cursor:default;
+}
+.service-card:hover{background:var(--bg3)}
+.service-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:0;height:2px;background:var(--gold);
+  transition:width 0.4s;
+}
+.service-card:hover::before{width:100%}
+.service-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:300;color:var(--border2);
+  line-height:1;margin-bottom:20px;letter-spacing:-1px;
+}
+.service-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;color:#fff;
+  margin-bottom:12px;line-height:1.2;
+}
+.service-desc{font-size:12.5px;font-weight:300;color:var(--muted2);line-height:1.75}
+.service-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.stag{
+  font-size:9.5px;font-weight:500;letter-spacing:1px;
+  padding:4px 10px;border-radius:2px;
+  background:var(--gold3);border:1px solid var(--border2);
+  color:var(--gold2);
+}
+
+/* ── SKILLS ── */
+#skills{background:var(--bg2)}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;align-items:start}
+.skill-group{margin-bottom:36px}
+.skill-group-label{
+  font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.skill-group-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.skill-item{margin-bottom:16px}
+.skill-meta{display:flex;justify-content:space-between;margin-bottom:7px}
+.skill-name{font-size:12px;font-weight:500;color:var(--text)}
+.skill-level{font-size:10px;color:var(--muted);letter-spacing:1px}
+.skill-bar{height:2px;background:var(--bg4);border-radius:1px;overflow:hidden}
+.skill-fill{
+  height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));
+  border-radius:1px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 1s cubic-bezier(0.22,1,0.36,1);
+}
+.skill-fill.animated{transform:scaleX(1)}
+.soft-skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.soft-pill{
+  font-size:11px;font-weight:400;
+  padding:7px 14px;border-radius:2px;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--muted2);
+  transition:border-color 0.2s,color 0.2s;
+}
+.soft-pill:hover{border-color:var(--border2);color:var(--gold2)}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--bg)}
+.exp-timeline{margin-top:60px;position:relative;padding-left:32px}
+.exp-timeline::before{
+  content:'';position:absolute;left:6px;top:8px;
+  width:1px;height:calc(100% - 8px);
+  background:linear-gradient(180deg,var(--gold),transparent);
+}
+.exp-block{position:relative;margin-bottom:64px}
+.exp-block:last-child{margin-bottom:0}
+.exp-dot{
+  position:absolute;left:-32px;top:8px;
+  width:13px;height:13px;border-radius:50%;
+  background:var(--bg);border:1.5px solid var(--gold);
+}
+.exp-dot::after{
+  content:'';position:absolute;inset:3px;
+  border-radius:50%;background:var(--gold);
+}
+.exp-period{
+  font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;opacity:0.7;
+}
+.exp-role{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:600;color:#fff;
+  line-height:1.2;margin-bottom:4px;
+}
+.exp-company{
+  font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:24px;
+}
+.exp-achievements{list-style:none;display:flex;flex-direction:column;gap:12px}
+.exp-achievements li{
+  display:flex;gap:14px;
+  font-size:13px;font-weight:300;color:var(--muted2);line-height:1.7;
+}
+.exp-achievements li::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;margin-top:10px;
+}
+.exp-achievements li strong{color:var(--text);font-weight:500}
+.exp-highlight{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:20px;padding:10px 18px;
+  background:var(--gold3);border:1px solid var(--border);border-radius:2px;
+  font-size:11px;font-weight:500;color:var(--gold2);letter-spacing:0.5px;
+}
+.exp-highlight-num{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600}
+
+/* ── TRAINING ── */
+#training{background:var(--bg2)}
+.training-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.training-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;padding:32px 28px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:border-color 0.2s,transform 0.2s;
+  position:relative;overflow:hidden;
+}
+.training-card::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s;
+}
+.training-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.training-card:hover::after{transform:scaleX(1)}
+.training-icon{
+  font-size:28px;
+  width:52px;height:52px;
+  background:var(--gold3);border:1px solid var(--border);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;
+  color:var(--gold);
+}
+.training-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;font-weight:600;color:#fff;line-height:1.3;
+}
+.training-desc{font-size:12px;font-weight:300;color:var(--muted2);line-height:1.7}
+.training-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 10px;background:var(--gold3);border:1px solid var(--border);
+  border-radius:2px;color:var(--gold);align-self:flex-start;margin-top:auto;
+}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg);text-align:center}
+.contact-inner{max-width:640px;margin:0 auto}
+.contact-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,6vw,72px);
+  font-weight:300;color:#fff;line-height:1;
+  letter-spacing:-2px;margin-bottom:24px;
+}
+.contact-title em{
+  font-style:italic;color:var(--gold2);display:block;font-weight:600;
+}
+.contact-desc{
+  font-size:14px;font-weight:300;color:var(--muted2);
+  line-height:1.75;margin-bottom:48px;
+}
+.contact-cards{
+  display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px;
+}
+.contact-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:4px;padding:20px 28px;text-decoration:none;
+  display:flex;align-items:center;gap:12px;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.contact-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.contact-card-icon{
+  font-size:18px;color:var(--gold);
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+}
+.contact-card-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.contact-card-value{font-size:13px;font-weight:400;color:var(--text)}
+.availability{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 24px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:2px;
+  font-size:11px;font-weight:500;color:var(--muted2);letter-spacing:1px;
+}
+.pulse-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#4ade80;
+  box-shadow:0 0 0 3px rgba(74,222,128,0.15);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,0.15)}
+  50%{box-shadow:0 0 0 6px rgba(74,222,128,0.0)}
+}
+
+/* ── FOOTER ── */
+footer{
+  padding:32px 7%;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--bg2);
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;color:var(--gold2);
+}
+.footer-copy{font-size:11px;color:var(--muted);letter-spacing:0.5px}
+
+/* ── FADE-IN OBSERVER ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .services-grid{grid-template-columns:1fr}
+  .service-card{border-right:none}
+  .skills-layout{grid-template-columns:1fr;gap:40px}
+  .training-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{display:none}
+}
+@media(max-width:640px){
+  nav{padding:0 5%}
+  .nav-links{display:none}
+  .nav-links.open{
+    display:flex;flex-direction:column;gap:0;
+    position:fixed;top:64px;left:0;right:0;
+    background:var(--bg2);border-bottom:1px solid var(--border);
+    padding:16px 0;
+  }
+  .nav-links.open a{padding:12px 5%;font-size:12px}
+  .hamburger{display:flex}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  section{padding:72px 5%}
+  #hero{padding:0 5%}
+  .training-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:12px;text-align:center}
+  .contact-cards{flex-direction:column;align-items:center}
+}
+
+/* ── PRINT ── */
+@media print{
+  nav,footer{display:none}
+  section{padding:40px 5%}
+  .hero-stats{display:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{size:A4;margin:1cm}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav id="navbar">
+  <div class="nav-logo">JCA</div>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#training">Training</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+  <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for Remote Work</div>
+    <h1 class="hero-name">
+      Joriel C.<br/>
+      <em>Amiana</em>
+    </h1>
+    <p class="hero-desc">
+      <strong>Customer Experience & Operations Specialist</strong> — engineering AI-powered workflows, scaling social audiences, and delivering premium operational outputs at machine speed for remote clients worldwide.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">View My Services</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Daily Tickets Handled</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10K+</div>
+      <div class="stat-label">Followers Grown in 90 Days</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2+</div>
+      <div class="stat-label">Years Remote Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<section id="about">
+  <div class="section-tag">About Me</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-title">More than a<br/>Virtual Assistant</div>
+      <p>I'm Joriel — a remote operations specialist based in Cebu City, Philippines, with over two years of experience running high-volume customer support environments, building AI-powered workflow systems, and delivering measurable growth results for online businesses.</p>
+      <blockquote>"I don't just complete tasks — I architect the systems that make everything run smoother."</blockquote>
+      <p>What sets me apart is the combination of <strong>advanced AI prompt engineering</strong> with <strong>Carnegie-trained communication</strong> — I bring both the technical horsepower and the human finesse to every client engagement. Currently completing my BS in Business Administration (Marketing Management) while operating at full professional capacity.</p>
+    </div>
+    <div class="about-right">
+      <div class="about-card reveal reveal-delay-1">
+        <div class="about-card-icon">⚡</div>
+        <div>
+          <div class="about-card-title">AI-Augmented Operations</div>
+          <div class="about-card-text">I use ChatGPT and Claude to compress multi-hour tasks into minutes — without sacrificing quality. Every workflow I build is smarter than the last.</div>
+        </div>
+      </div>
+      <div class="about-card reveal reveal-delay-2">
+        <div class="about-card-icon">🎯</div>
+        <div>
+          <div class="about-card-title">Zero-Inbox Discipline</div>
+          <div class="about-card-text">200+ daily tickets triaged and resolved — independently, without micromanagement. SLA management is not a challenge, it's a baseline.</div>
+        </div>
+      </div>
+      <div class="about-card reveal reveal-delay-3">
+        <div class="about-card-icon">📈</div>
+        <div>
+          <div class="about-card-title">Proven Growth Results</div>
+          <div class="about-card-text">Scaled a client's Instagram from 0 to 10,000+ followers in under 90 days. Growth isn't luck — it's a systematic, repeatable process.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ SERVICES ════════════════ -->
+<section id="services">
+  <div class="section-tag">What I Do</div>
+  <h2 class="section-title reveal">Services & Expertise</h2>
+  <p class="section-sub reveal">Precision-engineered support for businesses that demand more than task completion.</p>
+  <div class="services-grid" style="margin-top:60px">
+
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-title">AI Workflow Engineering</div>
+      <div class="service-desc">I design ChatGPT-powered response templates, prompt architectures, and automation SOPs that reduce resolution time while maintaining premium output quality. Your operations run faster — and smarter.</div>
+      <div class="service-tags">
+        <span class="stag">ChatGPT</span>
+        <span class="stag">Claude AI</span>
+        <span class="stag">SOP Design</span>
+        <span class="stag">Automation</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">02</div>
+      <div class="service-title">Customer Support Management</div>
+      <div class="service-desc">High-volume inbox management, complaint de-escalation, order tracking, and sales conversion — all handled with empathy-first communication and zero-inbox discipline. 200+ tickets daily is my standard.</div>
+      <div class="service-tags">
+        <span class="stag">Email Triage</span>
+        <span class="stag">Escalations</span>
+        <span class="stag">Sales Conversion</span>
+        <span class="stag">CRM</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">03</div>
+      <div class="service-title">Social Media & Growth Operations</div>
+      <div class="service-desc">Organic audience scaling, content planning, engagement-driven community management, and targeted prospect outreach. Proven: 0 to 10,000+ followers in under 90 days.</div>
+      <div class="service-tags">
+        <span class="stag">Instagram</span>
+        <span class="stag">Facebook</span>
+        <span class="stag">Lead Gen</span>
+        <span class="stag">Outreach</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-title">Real Estate Research & Analysis</div>
+      <div class="service-desc">Market comps research, property valuation methodology, and investor-ready reporting. I translate raw property data into structured, decision-grade analysis that helps clients move with confidence.</div>
+      <div class="service-tags">
+        <span class="stag">Comps Analysis</span>
+        <span class="stag">Valuations</span>
+        <span class="stag">Investor Reports</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">05</div>
+      <div class="service-title">Systems & Documentation</div>
+      <div class="service-desc">I build the operational backbone that keeps businesses running: SOP creation, workflow mapping, lead tracking pipelines, and follow-up sequences. No lead falls through the cracks — by design.</div>
+      <div class="service-tags">
+        <span class="stag">SOPs</span>
+        <span class="stag">Lead Tracking</span>
+        <span class="stag">Pipeline Mgmt</span>
+        <span class="stag">Playbooks</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">06</div>
+      <div class="service-title">Remote Operations Partner</div>
+      <div class="service-desc">Full async, self-directed remote execution — graveyard-shift capable, proactive communication, and zero micromanagement required. I integrate into your operations like a trusted internal team member.</div>
+      <div class="service-tags">
+        <span class="stag">Async Comms</span>
+        <span class="stag">Self-Directed</span>
+        <span class="stag">Long-Term Retainer</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ SKILLS ════════════════ -->
+<section id="skills">
+  <div class="section-tag">Competencies</div>
+  <h2 class="section-title reveal">Skills & Tools</h2>
+  <div class="skills-layout">
+    <div>
+      <div class="skill-group">
+        <div class="skill-group-label">AI & Automation</div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">ChatGPT Prompt Engineering</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.95"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Claude AI</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.92"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">AI Workflow Design</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">SOP & Automation Documentation</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.88"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-label">Customer Support</div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">High-Volume Inbox Management</span><span class="skill-level">Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.97"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Escalation Handling</span><span class="skill-level">Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.93"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Sales Conversion</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.82"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="skill-group">
+        <div class="skill-group-label">Social Media & Growth</div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Instagram Growth</span><span class="skill-level">Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.94"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Facebook Outreach</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.88"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Lead Generation</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.86"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Content Planning</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="0.80"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group" style="margin-top:32px">
+        <div class="skill-group-label">Soft Skills</div>
+        <div class="soft-skills">
+          <span class="soft-pill">Carnegie Communication</span>
+          <span class="soft-pill">Empathy-First Approach</span>
+          <span class="soft-pill">Time Management</span>
+          <span class="soft-pill">Self-Direction</span>
+          <span class="soft-pill">Async Collaboration</span>
+          <span class="soft-pill">Client Rapport</span>
+          <span class="soft-pill">Professional Writing</span>
+          <span class="soft-pill">Problem-Solving</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ EXPERIENCE ════════════════ -->
+<section id="experience">
+  <div class="section-tag">Work History</div>
+  <h2 class="section-title reveal">Professional Experience</h2>
+  <div class="exp-timeline">
+
+    <div class="exp-block reveal">
+      <div class="exp-dot"></div>
+      <div class="exp-period">2023 – 2026</div>
+      <div class="exp-role">Customer Support & Sales Assistant</div>
+      <div class="exp-company">Printing Business · Full-Time Remote</div>
+      <ul class="exp-achievements">
+        <li><div><strong>Triaged and resolved 200+ inbound inquiries daily</strong> across email and social media — sustaining inbox-zero discipline independently under sustained high-volume pressure.</div></li>
+        <li><div><strong>Engineered ChatGPT-powered response workflows</strong> that reduced average resolution time while maintaining a consistent, on-brand communication tone across all customer touchpoints.</div></li>
+        <li><div><strong>Converted inbound inquiries into confirmed sales</strong> through accurate product information, real-time order updates, and timely follow-up sequences.</div></li>
+        <li><div><strong>De-escalated customer complaints</strong> using empathy-first communication — consistently preserving brand reputation under high-volume pressure.</div></li>
+        <li><div><strong>Built and maintained ticketing records</strong>, identifying repeat-issue patterns that proactively improved workflow efficiency over time.</div></li>
+      </ul>
+      <div class="exp-highlight">
+        <span class="exp-highlight-num">200+</span>
+        <span>daily inquiries resolved with zero-inbox discipline</span>
+      </div>
+    </div>
+
+    <div class="exp-block reveal">
+      <div class="exp-dot"></div>
+      <div class="exp-period">2023 – 2026</div>
+      <div class="exp-role">Virtual Assistant & Social Media Manager</div>
+      <div class="exp-company">Online / Remote Clients · Contract & Retainer</div>
+      <ul class="exp-achievements">
+        <li><div><strong>Scaled a client's Instagram from 0 to 10,000+ followers in under 90 days</strong> through strategic content planning, consistent cadence, and engagement-driven community management.</div></li>
+        <li><div><strong>Executed targeted lead generation and direct outreach campaigns</strong> via Facebook and Instagram — moving qualified prospects into active sales pipelines.</div></li>
+        <li><div><strong>Designed and maintained lead-tracking systems</strong> and follow-up sequences ensuring no leads were lost across multiple simultaneous client accounts.</div></li>
+        <li><div><strong>Delivered real estate market research and property comps analysis</strong> using systematic data gathering — producing investor-ready reports for client decision-making.</div></li>
+        <li><div><strong>Applied AI prompt engineering to compress multi-hour tasks into minutes</strong> — content creation, research summaries, and operational documentation all accelerated without quality loss.</div></li>
+      </ul>
+      <div class="exp-highlight">
+        <span class="exp-highlight-num">10K+</span>
+        <span>followers grown organically in under 90 days</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ TRAINING ════════════════ -->
+<section id="training">
+  <div class="section-tag">Development</div>
+  <h2 class="section-title reveal">Education & Training</h2>
+  <div class="training-grid">
+
+    <div class="training-card reveal">
+      <div class="training-icon">🎓</div>
+      <div class="training-title">BS Business Administration — Marketing Management</div>
+      <div class="training-desc">Maintaining academic progression while executing a full-time remote operations role — applying marketing principles directly to client growth campaigns and lead generation strategies.</div>
+      <div class="training-badge">📍 Philippines · 2022–2026</div>
+    </div>
+
+    <div class="training-card reveal reveal-delay-1">
+      <div class="training-icon">🏠</div>
+      <div class="training-title">Real Estate Research & Comps Analysis</div>
+      <div class="training-desc">Applied across live client engagements, producing investor-grade property reports using systematic data gathering and comparative valuation methodology.</div>
+      <div class="training-badge">✓ Applied in Live Engagements</div>
+    </div>
+
+    <div class="training-card reveal reveal-delay-2">
+      <div class="training-icon">🤖</div>
+      <div class="training-title">AI & ChatGPT Workflow Engineering</div>
+      <div class="training-desc">Advanced prompt architecture, automation design, and AI-enhanced output systems — moving operations beyond traditional VA execution into strategic partnership territory.</div>
+      <div class="training-badge">✓ Advanced Level</div>
+    </div>
+
+    <div class="training-card reveal">
+      <div class="training-icon">🧠</div>
+      <div class="training-title">Dale Carnegie Human Psychology & Communication</div>
+      <div class="training-desc">Applied to client interactions, sales conversations, and escalation management — the Carnegie methodology underpins every customer-facing communication I produce.</div>
+      <div class="training-badge">✓ Certified Methodology</div>
+    </div>
+
+    <div class="training-card reveal reveal-delay-1" style="grid-column:span 2">
+      <div class="training-icon">🌍</div>
+      <div class="training-title">Self-Directed Remote Excellence</div>
+      <div class="training-desc">Graveyard-shift availability, zero-micromanagement track record, and proven async communication discipline across multiple simultaneous client engagements. Remote-first is not a limitation — it's my operating environment.</div>
+      <div class="training-badge">✓ 2+ Years Track Record</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ CONTACT ════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-tag" style="justify-content:center">Get In Touch</div>
+    <div class="contact-title">
+      Let's Build<br/><em>Something Together</em>
+    </div>
+    <p class="contact-desc">Whether you need a long-term operations partner, a social media growth specialist, or an AI workflow architect — I'm ready to engage immediately. Open to retainer, project-based, and full-time remote roles.</p>
+
+    <div class="contact-cards">
+      <a href="mailto:Jorielamiana04@gmail.com" class="contact-card">
+        <div class="contact-card-icon">✉</div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">Jorielamiana04@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+639053418517" class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <div>
+          <div class="contact-card-label">Phone / WhatsApp</div>
+          <div class="contact-card-value">+63 905 341 8517</div>
+        </div>
+      </a>
+      <div class="contact-card" style="cursor:default">
+        <div class="contact-card-icon">📍</div>
+        <div>
+          <div class="contact-card-label">Location</div>
+          <div class="contact-card-value">Cebu City, Philippines</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="availability">
+      <div class="pulse-dot"></div>
+      Available for immediate engagement — all time zones welcome
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="footer-logo">Joriel C. Amiana</div>
+  <div class="footer-copy">Portfolio samples & client references available upon request.</div>
+</footer>
+
+<script>
+// Hamburger
+const ham=document.getElementById('hamburger');
+const nav=document.getElementById('navlinks');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  nav.classList.toggle('open');
+});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  ham.classList.remove('open');nav.classList.remove('open');
+}));
+
+// Scroll reveal
+const reveals=document.querySelectorAll('.reveal');
+const revObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.12});
+reveals.forEach(r=>revObs.observe(r));
+
+// Skill bars
+const fills=document.querySelectorAll('.skill-fill');
+const barObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const w=e.target.dataset.width;
+      e.target.style.transform=`scaleX(${w})`;
+      e.target.classList.add('animated');
+    }
+  });
+},{threshold:0.5});
+fills.forEach(f=>barObs.observe(f));
+
+// Navbar scroll
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>50){
+    navbar.style.background='rgba(11,13,18,0.97)';
+  } else {
+    navbar.style.background='rgba(11,13,18,0.85)';
+  }
+},{passive:true});
+</script>
+
+</body>
+</html>
